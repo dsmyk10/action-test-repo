@@ -18,4 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Message
-        run: echo Hello, ${{ jobs.test.url }}
+        run: echo Hello, ${{ steps.jobs.outputs.html_url }}
