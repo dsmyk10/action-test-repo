@@ -12,7 +12,7 @@ jobs:
         id: test
       - name: Message
 #         run: echo Hello, ${{ steps.jobs.outputs.html_url }}
-        run: echo Hello, ${{jobs.test.environment.url }}
+        run: echo Hello, ${{ build.test.environment.url }}
         
   notification:
     runs-on: ubuntu-latest
