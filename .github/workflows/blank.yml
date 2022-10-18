@@ -10,10 +10,6 @@ jobs:
       - name: Run hello
         run: echo Hello, ${{ env.PERSON }}!
         id: test
-      - name: Run hello
-        uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
-        with:
-          registry: ghcr.io
       - name: Message
         run: echo Hello, ${{ steps.jobs.outputs.html_url }}
         
