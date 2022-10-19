@@ -14,15 +14,15 @@ jobs:
     steps:
       - id: step1
         name: Run hello
-        run: echo "::set-output name=value1::please"
+        run: echo 'Hi from step1!'
         
       - id: step2
         name: Message
-        run: echo "::set-output name=value1::work-linux"
+        run: echo ${{ steps.step1.outputs.url_output }}
         
   notification:
     runs-on: ubuntu-latest
     needs: 'build'
     steps:
       - name: Message
-        run: echo ${{needs.build.outputs.output1}} ${{needs.build.outputs.output2}} 
+        run: echo Hello world!
