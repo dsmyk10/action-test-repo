@@ -6,17 +6,23 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    outputs:
+      output1: ${{ steps.step1.outputs.value1 }} 
+      output2: ${{ steps.step2.outputs.value1 }}
+      
     steps:
-      - name: Run hello
-        run: echo Hello, ${{ env.PERSON }}!
-        id: test
-      - name: Message
-        run: |
-          echo " ${{ steps.jobs.outputs.html_url }}"
+      - id: step1
+        name: Run hello
+        run: echo "::set-output name=value1::please"
+        
+      - id: step2
+        name: Message
+        run: echo "::set-output name=value1::work-linux"
         
   notification:
     runs-on: ubuntu-latest
     needs: 'build'
     steps:
       - name: Message
-        run: echo Hello, ${{ steps.jobs.outputs.html_url }}
+        run: echo ${{needs.build.outputs.output1}} ${{needs.build.outputs.output2}} 
