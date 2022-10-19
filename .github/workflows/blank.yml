@@ -5,8 +5,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-       - name: Message
-         run: echo ${{ github.action_path }}
+      -  name: repo
+         run: echo ${{ github.repository }}
+         
+      - name: path
+        run: echo ${{ github.action_path }}
         
 #   notification:
 #     runs-on: ubuntu-latest
