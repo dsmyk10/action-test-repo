@@ -21,7 +21,7 @@ jobs:
         run: echo "${{ env.PERSON }}" 
     environment:
           name: url
-          url: ${{ build.step1.outputs.url_output }}
+          url: ${{ steps.step1.outputs.url_output }}
         
   notification:
     runs-on: ubuntu-latest
