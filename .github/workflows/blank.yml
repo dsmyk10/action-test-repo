@@ -8,8 +8,17 @@ jobs:
       -  name: repo
          run: echo ${{ github.repository }}
          
-      - name: path
-        run: echo ${{ github.action_path }}
+      - name: url
+        run: echo ${{ github.repositoryUrl }}
+        
+      - name: run-id
+        run: echo ${{ github.run_id }}
+        
+      - name: run-number
+        run: echo ${{ github.run_number }}
+        
+      - name: server-url
+        run: echo ${{ github.server_url }}
         
 #   notification:
 #     runs-on: ubuntu-latest
