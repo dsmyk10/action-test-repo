@@ -1,23 +1,16 @@
 name: CI
 on: workflow_dispatch
 
-env:
-  PERSON: "Den"
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - id: step1
-        name: Run hello
-        run: echo 'Hi from step1!'
+       - name: Message
+         run: echo ${{ github.action_path }}
         
-      - id: step2
-        name: Message
-        run: echo "${{ github.action_path }}" 
-        
-  notification:
-    runs-on: ubuntu-latest
-    needs: 'build'
-    steps:
-      - name: Message
-        run: echo URL - https://translate.google.com/
+#   notification:
+#     runs-on: ubuntu-latest
+#     needs: 'build'
+#     steps:
+#       - name: Message
+#         run: echo URL - https://translate.google.com
