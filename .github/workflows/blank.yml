@@ -3,7 +3,6 @@ on: workflow_dispatch
 
 env:
   PERSON: "Den"
-  url: ${{ build.step1.outputs.url_output }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +18,10 @@ jobs:
         
       - id: step2
         name: Message
-        run: echo "${{ env.url }}" 
+        run: echo "${{ env.PERSON }}" 
+    environment:
+          name: url
+          url: ${{ build.step1.outputs.url_output }}
         
   notification:
     runs-on: ubuntu-latest
