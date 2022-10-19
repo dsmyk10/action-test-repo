@@ -18,7 +18,7 @@ jobs:
         
       - id: step2
         name: Message
-        run: echo ${{ steps.step1.outputs.url_output }}
+        run: echo "${{ github.run_number }} completed successfully, triggered by user ${{ github.actor }} with commit SHA ${{ github.sha }}" 
         
   notification:
     runs-on: ubuntu-latest
