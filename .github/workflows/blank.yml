@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 env:
   PERSON: "Den"
-  url: ${{ steps.step1.outputs.url_output }}
+  url: ${{ build.step1.outputs.url_output }}
 jobs:
   build:
     runs-on: ubuntu-latest
