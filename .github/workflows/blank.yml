@@ -6,11 +6,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    outputs:
-      output1: ${{ steps.step1.outputs.value1 }} 
-      output2: ${{ steps.step2.outputs.value1 }}
-      
     steps:
       - id: step1
         name: Run hello
@@ -19,13 +14,10 @@ jobs:
       - id: step2
         name: Message
         run: echo "${{ env.PERSON }}" 
-    environment:
-          name: url
-          url: ${{ steps.step1.outputs.url_output }}
         
   notification:
     runs-on: ubuntu-latest
     needs: 'build'
     steps:
       - name: Message
-        run: echo Hello world!
+        run: echo URL - https://translate.google.com/
