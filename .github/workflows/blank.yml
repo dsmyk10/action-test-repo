@@ -3,6 +3,7 @@ on: workflow_dispatch
 
 env:
   PERSON: "Den"
+  url: ${{ steps.step1.outputs.url_output }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +19,7 @@ jobs:
         
       - id: step2
         name: Message
-        run: echo "${{ github.run_number }} completed successfully, triggered by user ${{ github.actor }} with commit SHA ${{ github.sha }}" 
+        run: echo "${{ env.url }}" 
         
   notification:
     runs-on: ubuntu-latest
