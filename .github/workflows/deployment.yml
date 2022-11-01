@@ -32,7 +32,3 @@ jobs:
     with:
       deploy-result: ${{ needs.deploy.result }}
       workflow-name: ${{ github.workflow }}
-      release-version: ${{ inputs.version-tag }}
-      action-run-id: ${{ github.run_id }}
-
-
