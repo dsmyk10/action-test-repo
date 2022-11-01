@@ -1,0 +1,26 @@
+name: notification
+
+on:
+  workflow_call:
+    inputs:
+      deploy-result:
+        type: string
+      workflow-name:
+        type: string
+
+jobs:
+  notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Success notification'
+        if: inputs.deploy-result == 'success'
+        run: Success ${{ inputs.workflow-name }}  
+        
+      - name: 'Failure notification'
+        if: inputs.deploy-result == 'failure'
+        run: Failure ${{ inputs.workflow-name }}  
+        
+      - name: 'Cancelled notification'
+        if: inputs.deploy-result == 'cancelled'
+        run: Cancelled ${{ inputs.workflow-name }}  
+        
