@@ -1,28 +1,38 @@
 name: deployment
-on: workflow_dispatch
+
+# Workflow triggered manually
+on:
+  workflow_dispatch:
+    inputs:
+      version-tag:
+        description: 'Put version tag'
+        required: true
+        type: string
+      tier:
+        description: 'Choose deployment env'
+        required: true
+        default: 'prod'
+        type: choice
+        options:
+          - prod
 
 jobs:
-  build:
+  # notification workflow call
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      -  name: repo
-         run: echo ${{ github.repository }}
-         
-      - name: url
-        run: echo ${{ github.repositoryUrl }}
-        
-      - name: run-id
-        run: echo ${{ github.run_id }}
-        
-      - name: run-number
-        run: echo ${{ github.run_number }}
-        
-      - name: server-url
-        run: echo ${{ github.server_url }}
-        
-#   notification:
-#     runs-on: ubuntu-latest
-#     needs: 'build'
-#     steps:
-#       - name: Message
-#         run: echo URL - https://translate.google.com
+      - name: deploy-step
+        run: echo work process!!!!!   
+      
+
+  notification:
+    if: ${{ always() }}
+    needs: deploy
+    uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+    with:
+      deploy-result: ${{ needs.deploy.result }}
+      workflow-name: ${{ github.workflow }}
+      release-version: ${{ inputs.version-tag }}
+      action-run-id: ${{ github.run_id }}
+
+
