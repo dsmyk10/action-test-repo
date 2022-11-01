@@ -14,13 +14,13 @@ jobs:
     steps:
       - name: 'Success notification'
         if: inputs.deploy-result == 'success'
-        run: Success ${{ inputs.workflow-name }}  
+        run: echo Success ${{ inputs.workflow-name }}  
         
       - name: 'Failure notification'
         if: inputs.deploy-result == 'failure'
-        run: Failure ${{ inputs.workflow-name }}  
+        run: echo Failure ${{ inputs.workflow-name }}  
         
       - name: 'Cancelled notification'
         if: inputs.deploy-result == 'cancelled'
-        run: Cancelled ${{ inputs.workflow-name }}  
+        run: echo Cancelled ${{ inputs.workflow-name }}  
         
