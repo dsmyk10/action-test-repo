@@ -25,6 +25,7 @@ jobs:
       workflow-name: ${{ github.workflow }}
       
   deploy:
+    needs: attention-notification
     runs-on: ubuntu-latest
     steps:
       - name: deploy-step
