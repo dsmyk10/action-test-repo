@@ -19,7 +19,6 @@ on:
 jobs:
   attention-notification:
     if: ${{ always() }}
-    needs: deploy
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
     with:
       deploy-result: ${{ needs.deploy.result }}
