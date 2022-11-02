@@ -18,7 +18,7 @@ jobs:
         if: inputs.notification-type == 'attention'
         run: echo "Deploment starts!!!"
         
-  resoult-notification:
+  result-notification:
     runs-on: ubuntu-latest
     steps:        
       - name: 'Success notification'
