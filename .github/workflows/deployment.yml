@@ -23,6 +23,7 @@ jobs:
     with:
       deploy-result: ${{ needs.deploy.result }}
       workflow-name: ${{ github.workflow }}
+      notification-type: "attention"
       
   deploy:
     needs: attention-notification
@@ -39,3 +40,4 @@ jobs:
     with:
       deploy-result: ${{ needs.deploy.result }}
       workflow-name: ${{ github.workflow }}
+      notification-type: "result"
