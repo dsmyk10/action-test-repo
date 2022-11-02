@@ -21,7 +21,6 @@ jobs:
     if: ${{ always() }}
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
     with:
-      deploy-result: ${{ needs.deploy.result }}
       workflow-name: ${{ github.workflow }}
       notification-type: "attention"
       
@@ -40,4 +39,4 @@ jobs:
     with:
       deploy-result: ${{ needs.deploy.result }}
       workflow-name: ${{ github.workflow }}
-      notification-type: "result"
+#      notification-type: "result"
