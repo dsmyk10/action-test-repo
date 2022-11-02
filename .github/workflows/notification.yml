@@ -7,11 +7,17 @@ on:
         type: string
       workflow-name:
         type: string
+      notification-type:
+        type: string
 
 jobs:
   resoult-notification:
     runs-on: ubuntu-latest
     steps:
+      - name: "Attention"
+        if: inputs.notification-type == 'attention'
+        run: echo "Deploment starts!!!"
+        
       - name: 'Success notification'
         if: inputs.deploy-result == 'success'
         run: echo Success ${{ inputs.workflow-name }}  
