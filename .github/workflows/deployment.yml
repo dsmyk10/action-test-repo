@@ -17,7 +17,14 @@ on:
           - prod
 
 jobs:
-  # notification workflow call
+  attention-notification:
+    if: ${{ always() }}
+    needs: deploy
+    uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+    with:
+      deploy-result: ${{ needs.deploy.result }}
+      workflow-name: ${{ github.workflow }}
+      
   deploy:
     runs-on: ubuntu-latest
     steps:
