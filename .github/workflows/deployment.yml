@@ -39,4 +39,3 @@ jobs:
     with:
       deploy-result: ${{ needs.deploy.result }}
       workflow-name: ${{ github.workflow }}
-#      notification-type: "result"
