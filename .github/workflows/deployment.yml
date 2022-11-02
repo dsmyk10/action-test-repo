@@ -25,7 +25,7 @@ jobs:
         run: echo work process!!!!!   
       
 
-  notification:
+  result-notification:
     if: ${{ always() }}
     needs: deploy
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
