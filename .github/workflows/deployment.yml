@@ -41,10 +41,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env: [region1, region2,  ${{ inputs.regions }}]
+        env: [region1, region2, region3]
     steps:
-      - name: deploy-step
+      - name: deploy-matrix
+        if: inputs.regions == 'All(regions)'
         run: echo work process ${{ matrix.env }} !!!
+        
+      - name: deploy-region
+        if: inputs.regions 1= 'All(regions)'
+        run: echo work proccess ${{ inputs.regions }}!!! 
       
 
   result-notification:
