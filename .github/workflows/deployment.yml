@@ -58,7 +58,7 @@ jobs:
 
   result-notification:
     if: ${{ always() }}
-    needs: deploy
+    needs: [matrix-deploy,region-deploy]
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
     with:
       deploy-result: ${{ needs.deploy.result }}
