@@ -48,7 +48,7 @@ jobs:
         run: echo work process ${{ matrix.env }} !!!
         
       - name: deploy-region
-        if: inputs.regions 1= 'All(regions)'
+        if: inputs.regions != 'All(regions)'
         run: echo work proccess ${{ inputs.regions }}!!! 
       
 
