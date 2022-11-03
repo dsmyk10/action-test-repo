@@ -36,19 +36,23 @@ jobs:
       workflow-name: ${{ github.workflow }}
       notification-type: "attention"
       
-  deploy:
+  matrix-deploy:
     needs: attention-notification
+    if: inputs.regions == 'All(regions)'
     runs-on: ubuntu-latest
     strategy:
       matrix:
         env: [region1, region2, region3]
     steps:
       - name: deploy-matrix
-        if: inputs.regions == 'All(regions)'
         run: echo work process ${{ matrix.env }} !!!
         
+  region-deploy:
+    needs: attention-notification
+    if: inputs.regions != 'All(regions)'
+    runs-on: ubuntu-latest
+    steps:
       - name: deploy-region
-        if: inputs.regions != 'All(regions)'
         run: echo work proccess ${{ inputs.regions }}!!! 
       
 
