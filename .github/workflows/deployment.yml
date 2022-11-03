@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env: [region1, region2, inputs.regions]
+        env: [region1, region2,  ${{ inputs.regions }}]
     steps:
       - name: deploy-step
         run: echo work process ${{ matrix.env }} !!!
