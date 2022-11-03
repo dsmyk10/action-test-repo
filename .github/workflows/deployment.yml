@@ -8,6 +8,18 @@ on:
         description: 'Put version tag'
         required: true
         type: string
+        
+      region:
+        description: 'Choose deployment region'
+        required: true
+        default: 'All(regions)'
+        type: choice
+        options:
+          - All(regions)
+          - region1
+          - region2
+          - region3
+        
       tier:
         description: 'Choose deployment env'
         required: true
