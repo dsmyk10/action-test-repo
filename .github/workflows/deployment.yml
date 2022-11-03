@@ -43,6 +43,7 @@ jobs:
     strategy:
       matrix:
         env: [region1, region2, region3]
+        
     steps:
       - name: deploy-matrix
         run: echo work process ${{ matrix.env }} !!!
