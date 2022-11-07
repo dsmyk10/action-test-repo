@@ -62,5 +62,6 @@ jobs:
     needs: [matrix-deploy,region-deploy]
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
     with:
-      deploy-result: ${{ needs.deploy.result }}
+      matrix-deploy-result: ${{ needs.matrix-deploy.result }}
+      region-deploy-result: ${{ needs.region-deploy.result }}
       workflow-name: ${{ github.workflow }}
