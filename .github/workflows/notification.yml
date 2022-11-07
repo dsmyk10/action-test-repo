@@ -3,7 +3,9 @@ name: notification
 on:
   workflow_call:
     inputs:
-      deploy-result:
+      matrix-deploy-result:
+        type: string
+      region-deploy-result: 
         type: string
       workflow-name:
         type: string
@@ -22,14 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:        
       - name: 'Success notification'
-        if: inputs.deploy-result == 'success'
+        if: inputs.matrix-deploy-result == 'success' || inputs.region-deploy-result == 'success'
         run: echo Success ${{ inputs.workflow-name }}  
         
       - name: 'Failure notification'
-        if: inputs.deploy-result == 'failure'
+        if: inputs.matrix-deploy-result == 'failure' || inputs.region-deploy-result == 'failure'
         run: echo Failure ${{ inputs.workflow-name }}  
         
       - name: 'Cancelled notification'
-        if: inputs.deploy-result == 'cancelled'
+        if: inputs.matrix-deploy-result == 'cancelled' || inputs.region-deploy-result == 'cancelled'
         run: echo Cancelled ${{ inputs.workflow-name }}  
         
