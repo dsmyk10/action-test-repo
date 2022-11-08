@@ -1,0 +1,73 @@
+name: test
+
+# Workflow triggered manually
+on:
+  workflow_dispatch:
+    inputs:
+      version-tag:
+        description: 'Put version tag'
+        required: true
+        type: string
+        
+      regions:
+        description: 'Choose deployment region'
+        required: true
+        default: 'All(regions)'
+        type: choice
+        options:
+          - All(regions)
+          - region1
+          - region2
+          - region3
+        
+      tier:
+        description: 'Choose deployment env'
+        required: true
+        default: 'prod'
+        type: choice
+        options:
+          - prod
+
+jobs:
+  attention-notification:
+    if: ${{ always() }}
+    uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+    with:
+      workflow-name: ${{ github.workflow }}
+      notification-type: "attention"
+      
+  matrix-deploy:
+    needs: attention-notification
+    if: inputs.regions == 'All(regions)'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [region1, region2, region3]
+        
+    steps:
+      - name: deploy-matrix
+        run: echo work process ${{ matrix.env }} !!!
+        
+      - name: notification
+        if: ${{ always() }}
+        uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+        with:
+          workflow-name: ${{ github.workflow }}
+        
+  region-deploy:
+    needs: attention-notification
+    if: inputs.regions != 'All(regions)'
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy-region
+        run: echo work proccess ${{ inputs.regions }}!!! 
+      
+
+  result-notification:
+    if: ${{ always() }}
+    needs: [matrix-deploy,region-deploy]
+    uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+    with:
+      matrix-deploy-result: ${{ needs.matrix-deploy.result }}
+      region-deploy-result: ${{ needs.region-deploy.result }}
+      workflow-name: ${{ github.workflow }}
