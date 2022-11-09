@@ -46,7 +46,10 @@ jobs:
         
     steps:
       - name: deploy-matrix
+        id: hello
         run: echo work process ${{ matrix.env }} !!!
+      - name: res
+        run: echo ! {{ needs.steps.hello.outcome }}
         
   region-deploy:
     needs: attention-notification
