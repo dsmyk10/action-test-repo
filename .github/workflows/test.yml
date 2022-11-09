@@ -47,10 +47,7 @@ jobs:
     steps:
       - name: deploy-matrix
         run: echo work process ${{ matrix.env }} !!!
-        
-      - name: notification
-        if: ${{ always() }}
-        uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+      - uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
         with:
           workflow-name: ${{ github.workflow }}
         
