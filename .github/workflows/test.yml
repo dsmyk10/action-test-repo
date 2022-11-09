@@ -47,9 +47,6 @@ jobs:
     steps:
       - name: deploy-matrix
         run: echo work process ${{ matrix.env }} !!!
-      - uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
-        with:
-          workflow-name: ${{ github.workflow }}
         
   region-deploy:
     needs: attention-notification
