@@ -58,7 +58,7 @@ jobs:
     steps:
        - name: deploy-region
 #         run: echo work proccess ${{ inputs.regions }}!!! 
-         run: echo work proccess ${{ needs.matrix-deploy.steps.hello.outcome  }}!!! 
+         run: echo work proccess ${{ matrix-deploy.steps.hello.outcome  }}!!! 
        
 
   result-notification:
