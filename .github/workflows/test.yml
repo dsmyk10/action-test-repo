@@ -52,13 +52,14 @@ jobs:
         run: echo ${{ steps.hello.outcome }}
         
   region-deploy:
-    needs: attention-notification
-    if: inputs.regions != 'All(regions)'
+    needs: [attention-notification, matrix-deploy]
+#     if: inputs.regions != 'All(regions)'
     runs-on: ubuntu-latest
     steps:
-      - name: deploy-region
-        run: echo work proccess ${{ inputs.regions }}!!! 
-      
+       - name: deploy-region
+#         run: echo work proccess ${{ inputs.regions }}!!! 
+         run: echo work proccess ${{ steps.hello.outcome  }}!!! 
+       
 
   result-notification:
     if: ${{ always() }}
