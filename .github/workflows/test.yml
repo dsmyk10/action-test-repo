@@ -48,7 +48,7 @@ jobs:
       - name: deploy-matrix
         id: hello
         run: echo work process ${{ matrix.env }} !!!
-      - name: res
+      - name: result
         run: echo ${{ steps.hello.outcome }}
         
   region-deploy:
@@ -60,7 +60,6 @@ jobs:
 #         run: echo work proccess ${{ inputs.regions }}!!! 
          run: echo work proccess ${{ matrix-deploy.steps.hello.outcome  }}!!! 
        
-
   result-notification:
     if: ${{ always() }}
     needs: [matrix-deploy,region-deploy]
