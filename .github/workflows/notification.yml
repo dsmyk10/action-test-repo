@@ -24,14 +24,10 @@ jobs:
         
   result-notification:
     runs-on: ubuntu-latest
-    steps:        
-       - name: 'Success notification'
+    steps:
+      - name: 'Success notification'
 #         if: inputs.matrix-deploy-result == 'success' || inputs.region-deploy-result == 'success'
-         run: echo | 
-          ${{ inputs.workflow-name }} notification
-          qeqwe
-          qweq
-          q2e21e
+        run: echo notification
         
         
 #       - name: 'Failure notification'
