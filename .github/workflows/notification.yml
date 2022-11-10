@@ -13,11 +13,11 @@ on:
         type: string
 
 jobs:
-  attention-notification:
+  started-notification:
     runs-on: ubuntu-latest
     steps:
       - name: "MESSAGE"
-        if: inputs.notification-type == 'attention'
+        if: inputs.notification-type == 'started'
         run: echo "Deploment starts!!!"
         
   result-notification:
