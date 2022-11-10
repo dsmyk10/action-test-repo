@@ -25,7 +25,7 @@ jobs:
   result-notification:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Success notification'
+      - name: 'Notification'
 #         if: inputs.matrix-deploy-result == 'success' || inputs.region-deploy-result == 'success'
         run: |
           echo env-1-notification ${{ inputs.env-1-deploy-result }}
