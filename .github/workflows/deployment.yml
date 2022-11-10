@@ -8,14 +8,13 @@ on:
         description: 'Put version tag'
         required: true
         type: string
-        
       env:
         description: 'Choose deployment env'
         required: true
-        default: 'All(env)'
+        default: 'All(env-1, env-2, env-3)'
         type: choice
         options:
-          - All(env)
+          - All(env-1, env-2, env-3)
           - env-1
           - env-2
           - env-3
@@ -30,11 +29,11 @@ jobs:
         
   env-1-deploy:
     needs: started-notification
-    if: inputs.env == 'All(env)' || inputs.env == 'env-1'
+    if: inputs.env == 'All(env-1, env-2, env-3)' || inputs.env == 'env-1'
     runs-on: ubuntu-latest
     steps:
       - name: deploy-env-1
-        run: echo work proccess on ${{ inputs.env }}!!! 
+        run: echo work proccess on ${{ inputs.env }} !!! 
         
 #   env-2-deploy:
 #     needs: started-notification
