@@ -3,9 +3,11 @@ name: notification
 on:
   workflow_call:
     inputs:
-      matrix-deploy-result:
+      env-1-deploy-result:
         type: string
-      region-deploy-result: 
+      env-2-deploy-result: 
+        type: string
+      env-3-deploy-result: 
         type: string
       workflow-name:
         type: string
@@ -23,15 +25,20 @@ jobs:
   result-notification:
     runs-on: ubuntu-latest
     steps:        
-      - name: 'Success notification'
-        if: inputs.matrix-deploy-result == 'success' || inputs.region-deploy-result == 'success'
-        run: echo Success ${{ inputs.workflow-name }}  
+       - name: 'Success notification'
+#         if: inputs.matrix-deploy-result == 'success' || inputs.region-deploy-result == 'success'
+         run: echo | 
+          ${{ inputs.workflow-name }} notification
+          qeqwe
+          qweq
+          q2e21e
         
-      - name: 'Failure notification'
-        if: inputs.matrix-deploy-result == 'failure' || inputs.region-deploy-result == 'failure'
-        run: echo Failure ${{ inputs.workflow-name }}  
         
-      - name: 'Cancelled notification'
-        if: inputs.matrix-deploy-result == 'cancelled' || inputs.region-deploy-result == 'cancelled'
-        run: echo Cancelled ${{ inputs.workflow-name }}  
+#       - name: 'Failure notification'
+#         if: inputs.matrix-deploy-result == 'failure' || inputs.region-deploy-result == 'failure'
+#         run: echo Failure ${{ inputs.workflow-name }}  
+        
+#       - name: 'Cancelled notification'
+#         if: inputs.matrix-deploy-result == 'cancelled' || inputs.region-deploy-result == 'cancelled'
+#         run: echo Cancelled ${{ inputs.workflow-name }}  
         
