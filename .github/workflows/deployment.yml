@@ -49,14 +49,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy-env-3
-        run: echo work proccess !!! 
-      
+        run: echo work proccess !!!      
 
-#   result-notification:
-#     if: ${{ always() }}
-#     needs: [env-1-deploy, env-2-deploy, env-3-deploy]
-#     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
-#     with:
-#       matrix-deploy-result: ${{ needs.matrix-deploy.result }}
-#       region-deploy-result: ${{ needs.region-deploy.result }}
-#       workflow-name: ${{ github.workflow }}
+  result-notification:
+    if: ${{ always() }}
+    needs: [env-1-deploy, env-2-deploy, env-3-deploy]
+    uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+    with:
+      env-1-deploy: ${{ needs.env-1-deploy.result }}
+      env-2-deploy: ${{ needs.env-2-deploy.result }}
+      env-3-deploy: ${{ needs.env-3-deploy.result }}
+      workflow-name: ${{ github.workflow }}
