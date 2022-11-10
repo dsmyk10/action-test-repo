@@ -9,24 +9,16 @@ on:
         required: true
         type: string
         
-      regions:
+      env:
         description: 'Choose deployment region'
         required: true
-        default: 'All(regions)'
+        default: 'All(env)'
         type: choice
         options:
-          - All(regions)
-          - region1
-          - region2
-          - region3
-        
-      tier:
-        description: 'Choose deployment env'
-        required: true
-        default: 'prod'
-        type: choice
-        options:
-          - prod
+          - All(env)
+          - env-1
+          - env-2
+          - env-3
 
 jobs:
   started-notification:
@@ -35,33 +27,37 @@ jobs:
     with:
       workflow-name: ${{ github.workflow }}
       notification-type: "started"
-      
-  matrix-deploy:
+        
+  env-1-deploy:
     needs: started-notification
-    if: inputs.regions == 'All(regions)'
+    if: inputs.env == 'All(regions)' || inputs.env == 'env-1'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        env: [region1, region2, region3]
-        
     steps:
-      - name: deploy-matrix
-        run: echo work process ${{ matrix.env }} !!!
+      - name: deploy-region
+        run: echo work proccess ${{ inputs.regions }}!!! 
         
-  region-deploy:
+  env-2-deploy:
     needs: started-notification
-    if: inputs.regions != 'All(regions)'
+    if: inputs.env == 'All(regions)' || inputs.env == 'env-2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy-region
+        run: echo work proccess ${{ inputs.regions }}!!! 
+        
+  env-3-deploy:
+    needs: started-notification
+    if: inputs.env == 'All(regions)' || inputs.env == 'env-3'
     runs-on: ubuntu-latest
     steps:
       - name: deploy-region
         run: echo work proccess ${{ inputs.regions }}!!! 
       
 
-  result-notification:
-    if: ${{ always() }}
-    needs: [matrix-deploy,region-deploy]
-    uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
-    with:
-      matrix-deploy-result: ${{ needs.matrix-deploy.result }}
-      region-deploy-result: ${{ needs.region-deploy.result }}
-      workflow-name: ${{ github.workflow }}
+#   result-notification:
+#     if: ${{ always() }}
+#     needs: [env-1-deploy, env-2-deploy, env-3-deploy]
+#     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
+#     with:
+#       matrix-deploy-result: ${{ needs.matrix-deploy.result }}
+#       region-deploy-result: ${{ needs.region-deploy.result }}
+#       workflow-name: ${{ github.workflow }}
