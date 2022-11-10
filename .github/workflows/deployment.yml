@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy-env-1
-        run: echo work proccess on ${{ inputs.env }} !!! 
+        run: echo work proccess!!! 
         
 #   env-2-deploy:
 #     needs: started-notification
