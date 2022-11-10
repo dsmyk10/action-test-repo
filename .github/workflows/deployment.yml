@@ -36,21 +36,21 @@ jobs:
       - name: deploy-env-1
         run: echo work proccess on ${{ inputs.env }}!!! 
         
-  env-2-deploy:
-    needs: started-notification
-    if: inputs.env == 'All(env)' || inputs.env == 'env-2'
-    runs-on: ubuntu-latest
-    steps:
-      - name: deploy-env-2
-        run: echo work proccess on ${{ inputs.env }}!!! 
+#   env-2-deploy:
+#     needs: started-notification
+#     if: inputs.env == 'All(env)' || inputs.env == 'env-2'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: deploy-env-2
+#         run: echo work proccess on ${{ inputs.env }}!!! 
         
-  env-3-deploy:
-    needs: started-notification
-    if: inputs.env == 'All(env)' || inputs.env == 'env-3'
-    runs-on: ubuntu-latest
-    steps:
-      - name: deploy-env-3
-        run: echo work proccess on ${{ inputs.env }}!!! 
+#   env-3-deploy:
+#     needs: started-notification
+#     if: inputs.env == 'All(env)' || inputs.env == 'env-3'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: deploy-env-3
+#         run: echo work proccess on ${{ inputs.env }}!!! 
       
 
 #   result-notification:
