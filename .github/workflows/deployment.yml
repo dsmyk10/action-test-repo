@@ -29,15 +29,15 @@ on:
           - prod
 
 jobs:
-  attention-notification:
+  started-notification:
     if: ${{ always() }}
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
     with:
       workflow-name: ${{ github.workflow }}
-      notification-type: "attention"
+      notification-type: "started"
       
   matrix-deploy:
-    needs: attention-notification
+    needs: started-notification
     if: inputs.regions == 'All(regions)'
     runs-on: ubuntu-latest
     strategy:
@@ -49,7 +49,7 @@ jobs:
         run: echo work process ${{ matrix.env }} !!!
         
   region-deploy:
-    needs: attention-notification
+    needs: started-notification
     if: inputs.regions != 'All(regions)'
     runs-on: ubuntu-latest
     steps:
