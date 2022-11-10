@@ -27,7 +27,10 @@ jobs:
     steps:
       - name: 'Success notification'
 #         if: inputs.matrix-deploy-result == 'success' || inputs.region-deploy-result == 'success'
-        run: echo notification
+        run: |
+          echo env-1-notification ${{ inputs.env-1-deploy-result }}
+          echo env-2-notification ${{ inputs.env-2-deploy-result }}
+          echo env-3-notification ${{ inputs.env-3-deploy-result }}
         
         
 #       - name: 'Failure notification'
