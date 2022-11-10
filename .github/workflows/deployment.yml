@@ -10,7 +10,7 @@ on:
         type: string
         
       env:
-        description: 'Choose deployment region'
+        description: 'Choose deployment env'
         required: true
         default: 'All(env)'
         type: choice
@@ -33,7 +33,7 @@ jobs:
     if: inputs.env == 'All(env)' || inputs.env == 'env-1'
     runs-on: ubuntu-latest
     steps:
-      - name: deploy-renv-1
+      - name: deploy-env-1
         run: echo work proccess on ${{ inputs.env }}!!! 
         
   env-2-deploy:
