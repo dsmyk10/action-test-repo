@@ -56,7 +56,7 @@ jobs:
     needs: [env-1-deploy, env-2-deploy, env-3-deploy]
     uses: dsmyk10/action-test-repo/.github/workflows/notification.yml@main
     with:
-      env-1-deploy: ${{ needs.env-1-deploy.result }}
-      env-2-deploy: ${{ needs.env-2-deploy.result }}
-      env-3-deploy: ${{ needs.env-3-deploy.result }}
+      env-1-deploy-result: ${{ needs.env-1-deploy.result }}
+      env-2-deploy-result: ${{ needs.env-2-deploy.result }}
+      env-3-deploy-result: ${{ needs.env-3-deploy.result }}
       workflow-name: ${{ github.workflow }}
